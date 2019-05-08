@@ -4,19 +4,52 @@
 \alias{getPromoterPvalue}
 \title{Run CNCDriver promoter p-value calculation}
 \usage{
-getPromoterPvalue(inputDir, tumorType, mutationType, reSampleIter = 1000,
-  seedNum = 42, debugMode = FALSE)
+getPromoterPvalue(inputFileDir, outputFileDir, promoterRegionBedFile,
+  elementKeyWord = "Promoter", triNucleotideDistributionFile,
+  filterOutBlacklistMutations, mutationBlacklistFile,
+  replicationTimingGenomeBinnedFile, replicationTimingElementBinnedFile,
+  tumorType, mutationType, cellType, replicationTimingCutOff,
+  seedNum = 42, reSampleIterations, reRunPvalueCutOff = 0.1,
+  useCores = 1, taskNum = 0, unitSize, debugMode = FALSE)
 }
 \arguments{
-\item{inputDir}{Where is annotated funseq2 result}
+\item{inputFileDir}{The path for prepared R object file [for example,reducedFunseqOutputNCDS_GBM.Rd]}
 
-\item{tumorType}{study name}
+\item{outputFileDir}{The path for output files}
+
+\item{promoterRegionBedFile}{The defintion of promoter regions in bed file format}
+
+\item{elementKeyWord}{Default is "Promoter", the keyword of promoter annotation in FunSeq2}
+
+\item{triNucleotideDistributionFile}{Cancer type specific mutation counts in 96 trinucleotide category}
+
+\item{filterOutBlacklistMutations}{TRUE or FALSE}
+
+\item{mutationBlacklistFile}{The file for mutation blacklist regions}
+
+\item{replicationTimingGenomeBinnedFile}{Replication timing value at 1MB bin}
+
+\item{replicationTimingElementBinnedFile}{Replication timing value of each element within 1MB bin}
+
+\item{tumorType}{Study name}
 
 \item{mutationType}{User provided mutated gene list}
 
-\item{reSampleIter}{User provided re-sapling iteration numbers}
+\item{cellType}{Cell type of the study, [ BJ, GM12878, HeLaS3, HepG2, IMR90, K562, MCF7, SKNSH or average ]}
+
+\item{replicationTimingCutOff}{Default is 0.2, a numeric value ranging from 0 to 1}
 
 \item{seedNum}{User provided random number seed, default is 42}
+
+\item{reSampleIterations}{User provided re-sapling iteration numbers}
+
+\item{reRunPvalueCutOff}{Default is 0.1, a numeric value ranging from 0 to 1}
+
+\item{useCores}{Default is 1, number of cpu to use}
+
+\item{taskNum}{Default is 0, 0 means to run all elements}
+
+\item{unitSize}{Number of elements to run per task}
 
 \item{debugMode}{TRUE or FALSE}
 }
@@ -44,6 +77,4 @@ rareMutationFreq<-0.02
 #           keepIsolatedNodes,verbose=TRUE)
 
 }
-\concept{
-CNCDriver
-}
+\concept{CNCDriver}

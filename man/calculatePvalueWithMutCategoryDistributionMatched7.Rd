@@ -6,25 +6,28 @@
 \title{calculate Pvalue With Mut CategoryDistribution Matched}
 \usage{
 calculatePvalueWithMutCategoryDistributionMatched7(variantTriMutCategory,
-  backgroundPosVariant, mutationDistMatrix, featureDF, reSampleNum, replaceFlag,
-  fileName, debugMode = FALSE)
+  backgroundPosVariant, mutationDistMatrix, featureDF, reSampleNum,
+  replaceFlag = FALSE, replicationTimingCutOff, debugFileName,
+  debugMode = FALSE)
 }
 \arguments{
-\item{variantTriMutCategory}{geneDFunique data frame}
+\item{variantTriMutCategory}{variantTriMutCategory data frame}
 
-\item{backgroundPosVariant}{mutationDistMatrix data frame}
+\item{backgroundPosVariant}{backgroundPosVariant data frame}
 
-\item{mutationDistMatrix}{default is one}
+\item{mutationDistMatrix}{mutationDistMatrix data frame}
 
-\item{featureDF}{geneDFunique data frame}
+\item{featureDF}{featureDF data frame}
 
-\item{reSampleNum}{mutationDistMatrix data frame}
+\item{reSampleNum}{number of re-sampling iterations}
 
-\item{replaceFlag}{default is one}
+\item{replaceFlag}{default is FALSE, whether to replace or not in the sampling process}
 
-\item{fileName}{fileName data frame}
+\item{replicationTimingCutOff, }{Default is 0.2, a numeric value ranging from 0 to 1}
 
-\item{debugMode}{default is FALSE}
+\item{debugFileName}{fileName to output debug information}
+
+\item{debugMode}{default is FALSE, TRUE or FALSE}
 }
 \value{
 variantTriMutCategoryParsed data frame
@@ -50,6 +53,4 @@ rareMutationFreq<-0.02
 #           keepIsolatedNodes,verbose=TRUE)
 
 }
-\concept{
-CNCDriver
-}
+\concept{CNCDriver}

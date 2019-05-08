@@ -4,11 +4,11 @@
 \alias{extractElementMutations}
 \title{Extract overlapping mutations from element annotation bed file}
 \usage{
-extractElementMutations(elementBedfileName, reducedFunseqOutput,
+extractElementMutations(elementBedfile, reducedFunseqOutput,
   debugMode = FALSE)
 }
 \arguments{
-\item{elementBedfileName}{Where is element annotated bed file}
+\item{elementBedfile}{The data frame for element annotated bed file}
 
 \item{reducedFunseqOutput}{reducedFunseq2 data frame}
 
@@ -38,6 +38,4 @@ rareMutationFreq<-0.02
 #           keepIsolatedNodes,verbose=TRUE)
 
 }
-\concept{
-CNCDriver
-}
+\concept{CNCDriver}

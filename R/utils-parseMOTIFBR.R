@@ -6,6 +6,8 @@
 #' @return motifBreakParsed data frame
 #'
 #' @examples
+#' # ETS_known17[chr19:49990691-49990691#49990686#49990704#-#14#-0.998921]
+#' # motifmodel # mutation position # motif start # motif end # motif direction # mutation position on the motif model # delta score 
 #' #date<-getRunDates(latest=TRUE)
 #' cancerType<-"KIRC"
 #' selectedSampleId<-NA
@@ -36,13 +38,18 @@ parseMOTIFBR<-function(dat,useCores=1){
   #a1<-strsplit(dat,",")
   
   a0<-dat$MOTIFBR
+  
+  ## TODO: "NA" bug in the VariantAnnotation package?
+  a0[a0=="NA"]<-NA
+  
   posIndex<-paste(dat$chr,paste(dat$posStart,dat$posEnd,sep="-"),sep=":")
   
   a1<-str_extract_all(a0,"([^,][A-Z0-9,_]+#[A-Za-z0-9_.:-]+#[0-9]+#[0-9]+#[+-]+#[0-9]+#[0-9.]+#[0-9.]+)")
   #a1<-unlist(a1)
   
   tmp<-mclapply(1:length(a1), function(x){
-    #cat(sprintf("gene:%s / %s\n",i,length(a1)))  
+  #tmp<-lapply(1:length(a1), function(x){
+    #cat(sprintf("gene:%s / %s\n",x,length(a1)))  
     
     t3 <- strsplit(a1[[x]], "\\#")
     
@@ -54,7 +61,7 @@ parseMOTIFBR<-function(dat,useCores=1){
       
       cc<-cc[order(cc$diffScore),]
       
-      # parse motif name
+      # parse motif TF name
       t4<-strsplit(cc$motifFullName,"\\_")
       
       cc2<-data.frame(do.call(rbind,t4),stringsAsFactors = FALSE)
@@ -69,7 +76,7 @@ parseMOTIFBR<-function(dat,useCores=1){
       motifBreakScoreRef<-paste(as.character(cc$refProb),collapse=",")
       motifBreakScoreDiff<-paste(cc$diffScore,collapse=",")
       
-      motifBreakMotifFullDetail<-paste(paste(cc$motifFullName,"[",paste(posIndex[x],cc$diffScore,sep="#"),"]",sep=""),collapse=",")
+      motifBreakMotifFullDetail<-paste(paste(cc$motifFullName,"[",paste(posIndex[x],cc$motifStart,cc$motifEnd,cc$strand,cc$motifPos,cc$diffScore,sep="#"),"]",sep=""),collapse=",")
       
       maxDiffScore<-min(cc$diffScore)
       selectedIdx<-(cc$diffScore %in% maxDiffScore)
@@ -79,8 +86,11 @@ parseMOTIFBR<-function(dat,useCores=1){
       cc4<-data.frame(do.call(rbind,t5),stringsAsFactors = FALSE)
       colnames(cc4)<-c("motifNameRoot","motifNameExtend")
       
-      motifBreakMotifFullDetailMax<-paste(paste(cc3$motifFullName,"[",paste(posIndex[x],cc3$diffScore,sep="#"),"]",sep=""),collapse=",")
-      motifBreakMotifTFNameMax<-paste(as.character(unique(cc4$motifNameRoot)),collapse=",")
+      #motifBreakMotifFullDetailMax<-paste(paste(cc3$motifFullName,"[",paste(posIndex[x],cc3$diffScore,sep="#"),"]",sep=""),collapse=",")
+      #motifBreakMotifTFNameMax<-paste(as.character(unique(cc4$motifNameRoot)),collapse=",")
+      
+      motifBreakMotifFullDetailMax<-paste(paste(cc3$motifFullName,"[",paste(posIndex[x],cc3$motifStart,cc3$motifEnd,cc3$strand,cc3$motifPos,cc3$diffScore,sep="#"),"]",sep=""),collapse=",")
+      motifBreakMotifTFNameMax<-paste(as.character(unique(cc3$motifFullName)),collapse=",")
             
     }else{
       
@@ -106,7 +116,7 @@ parseMOTIFBR<-function(dat,useCores=1){
     
     
     return(tmp)
-    
+  #})  
   },mc.cores=useCores)
   
   #motifBreakParsed<-list(fullName=motifBreakFullName,familyName=motifBreakFamilyName,strand=motifBreakStrand)

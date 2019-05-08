@@ -2,7 +2,7 @@
 % Please edit documentation in R/replicationTiming-addReplicationTimingsignal.R
 \name{addReplicationTimingSignal}
 \alias{addReplicationTimingSignal}
-\title{addReplicationTimingSignal}
+\title{Add replication timing signal value}
 \usage{
 addReplicationTimingSignal(reducedFunseqOutput, replicationTimingDF,
   useCores = 1)
@@ -12,13 +12,13 @@ addReplicationTimingSignal(reducedFunseqOutput, replicationTimingDF,
 
 \item{replicationTimingDF}{replicationTimingDF data frame}
 
-\item{useCores}{default is one}
+\item{useCores}{Default is one, number of cpu to use}
 }
 \value{
 reducedFunseqOutput data frame
 }
 \description{
-addReplicationTimingSignal
+Add replication timing signal value
 }
 \examples{
 #date<-getRunDates(latest=TRUE)
@@ -38,6 +38,4 @@ rareMutationFreq<-0.02
 #           keepIsolatedNodes,verbose=TRUE)
 
 }
-\concept{
-CNCDriver
-}
+\concept{CNCDriver}

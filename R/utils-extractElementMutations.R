@@ -1,6 +1,6 @@
 #' Extract overlapping mutations from element annotation bed file
 #'
-#' @param elementBedfileName Where is element annotated bed file
+#' @param elementBedfile The data frame for element annotated bed file 
 #' @param reducedFunseqOutput reducedFunseq2 data frame
 #' @param debugMode TRUE or FALSE
 #'
@@ -27,27 +27,35 @@
 #' @export
 #' @importFrom data.table setkeyv
 #' @importFrom data.table as.data.table
+#' @importFrom data.table data.table
 #' @importFrom data.table foverlaps
 
 
 
-extractElementMutations<-function(elementBedfileName,reducedFunseqOutput,debugMode=FALSE){
+extractElementMutations<-function(elementBedfile,reducedFunseqOutput,debugMode=FALSE){
 
     testDT<-data.table(reducedFunseqOutput)
     setkeyv(testDT,c("chr","posStart","posEnd"))
     
     #######
-    # keep mutation on lncrna.ncrna.bed
+    #
+    # keep mutation on elementBedfile
     # 
     ######
     
-    #filePath<-"~/work/Ekta_lab/compositeDriver_data/PCAWG_annotation/oct_05_2016_version"
-    #fileName<-"lncrna.ncrna.bed"
-    #fileName<-file.path(filePath,fileName)
-    
-    dat<-read.table(elementBedfileName,sep="\t",header=FALSE,stringsAsFactors = FALSE)
-    colnames(dat)<-c("chr","posStart","posEnd","name")
+    #elementBedfile<-read.table(elementBedfileName,sep="\t",header=FALSE,stringsAsFactors = FALSE)
+    #colnames(elementBedfile)<-c("chr","posStart","posEnd","name")
     #colnames(dat)<-c("chr","posStart","posEnd","name","score","strand","thickStart","thickEnd","itemRgb","blockCount","blockSizes","blockStarts")
+    
+    
+    ##
+    ## only take the first four columns in the bed file
+    ##
+    ## chr posStart posEnd       name                
+    ## chr1    68891  69090      OR4F5 
+    ## chr1   139310 139579 AL627309.1
+    
+    dat<-elementBedfile[,c(1:4)]
     
     #dat<-convertBED12format(dat,useCores)
     
