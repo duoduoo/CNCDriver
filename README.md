@@ -6,12 +6,17 @@
 [![Repo Size ](https://img.shields.io/github/release/mil2041/CNCDriver.svg)]()
 [![License ](https://img.shields.io/github/license/mil2041/CNCDriver.svg?style=flat-square)]()
 
+### References
+
+* Eric Minwei Liu, Alexander Martinez Fundichely, Bianca Jay Diaz, Boaz Aronson, Tawny Cuykendall, Matthew MacKay, Priyanka Dhingra, Elissa WP Wong, Ping Chi, Effie Apostolou, Neville E Sanjana, Ekta Khurana [“Identification of Cancer Drivers at CTCF Insulators in 1,962 Whole Genomes”](https://www.ncbi.nlm.nih.gov/pubmed/31078526), Cell Systems, 8,4460455. e8 (2019)
+
 ### Overview
 
 CNCDriver combined mutation recurrence and functional impact to identify coding and non-coding cancer drivers
 
 ### Version notes
 
+* CNCDriver (version 0.3.3) add tutorial, Oct-10-2019
 * CNCDriver (version 0.3.2) bugs fix
 * CNCDriver (version 0.3.1) variable refacoring 
 * CNCDriver (version 0.3) supports SNV coding drivers, promoter, enhancer, lincRNA and CTCF/cohesin insulator   
@@ -23,9 +28,8 @@ CNCDriver combined mutation recurrence and functional impact to identify coding 
 User will need to install devtools in R for running CNCDriver package
 
 ``` r
-install.packages("devtools")
-library("devtools")
-devtools::install_github("khuranalab/CNCDriver")
+library("remotes")
+remotes::install_github("khuranalab/CNCDriver", ref="master", build_vignette=TRUE)
 ```
 
 ## Usage
@@ -112,7 +116,7 @@ For any questions, comments and suggestions, please email
 * ekk2003 [at] med.cornell.edu 
 * mil2041 [at] med.cornell.edu
 
-Copyright © 2016-2018 Ekta Khurana Lab, WCMC
+Copyright © 2016-2019 Ekta Khurana Lab, WCMC
 
 ### License 
 This project is licensed under the 

@@ -1,0 +1,90 @@
+---
+title: "CNCDriver Tutorial"
+author:
+- name: Eric Minwei Liu
+  affiliation: Weill Cornell Medicine, New York, NY, USA
+- name: Ekta Khurana
+  affiliation: Weill Cornell Medicine, New York, NY, USA
+date: "`r Sys.Date()`"
+output:
+  BiocStyle::html_document:
+    toc: yes
+    toc_float: no
+  BiocStyle::pdf_document: default
+vignette: |
+  %\VignetteIndexEntry{CNCDriver Tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r knitrSetup, include=FALSE}
+library(knitr)
+opts_chunk$set(out.extra='style="display:block; margin: auto"', fig.align="center", fig.width=12, fig.height=12, tidy=TRUE)
+```
+
+```{r style, include=FALSE, echo=FALSE, results='asis'}
+BiocStyle::markdown()
+```
+
+# Overview
+
+The **CNCDriver** combined mutation recurrence and functional impact to identify
+coding and non-coding cancer drivers
+
+# Basics
+## Installation
+
+```{r installCNCDriver, eval=FALSE}
+library(remotes)
+install_github(repo="mil2041/CNCDriver", ref="master", build_vignette=TRUE)
+```
+
+## Getting Started
+
+Load **CNCDriver** package: 
+
+```{r loadLibrary, message=FALSE, warning=FALSE}
+library(CNCDriver)
+```
+
+A list of all accessible vignettes and methods is available with the following command: 
+
+```{r searchHelp, eval=FALSE, tidy=FALSE}
+help.search("CNCDriver")
+```
+
+For help on any **CNCDriver** package functions, use one of the following command formats:
+
+```{r showHelp, eval=FALSE, tidy=FALSE}
+
+help(getCDSPvalue)
+?getCDSPvalue
+```
+
+## Load FunSeq2 annotations of WGS SNV mutation calls in LGG. 
+
+Load pre-parsed FunSeq2 annotations of WGS SNV mutation calls in BRCA.
+The whole genome sequencing SNV mutation calls in BRCA are from Fredriksson et al. Nature Genetics 2015. WGS SNV data is available at 
+
+```{r netboxrExampleNetwork}
+# Load pre-parsed FunSeq2 annotations for SNV mutation calls in LGG.
+data("reducedFunseqOutputCDS")
+data("reducedFunseqOutputNCDS")
+```
+
+
+
+
+
+# References
+
+* Eric Minwei Liu, Alexander Martinez Fundichely, Bianca Jay Diaz, Boaz Aronson, Tawny Cuykendall, Matthew MacKay, Priyanka Dhingra, Elissa WP Wong, Ping Chi, Effie Apostolou, Neville E Sanjana, Ekta Khurana “Identification of Cancer Drivers at CTCF Insulators in 1,962 Whole Genomes”, Cell Systems, 8,4460455. e8 (2019)
+
+# Session Information
+
+```{r sessionInfo}
+sessionInfo()
+```
+
+
