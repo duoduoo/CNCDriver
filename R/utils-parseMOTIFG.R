@@ -37,7 +37,7 @@ parseMOTIFG<-function(dat,useCores=1){
   motifGainParsed<-{}
   #a1<-strsplit(dat,",")
   
-  a0<-dat$MOTIFG
+  a0<-as.character(dat$MOTIFG)
   posIndex<-paste(dat$chr,paste(dat$posStart,dat$posEnd,sep="-"),sep=":")
   
   
