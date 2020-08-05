@@ -159,8 +159,8 @@ makeQQplot<-function(outputDf){
     
     zp1<- zp1 + theme(axis.text = element_text(size = 10),
                       #axis.title = element_text(size = 7, face="bold"),
-                      axis.title.x = element_text(size=7),
-                      axis.title.y = element_text(size=7),
+                      axis.title.x = element_text(size=10),
+                      axis.title.y = element_text(size=10),
                       #axis.title.x = element_blank(),
                       #axis.title.y = element_blank(),
                       #panel.border = element_rect(linetype = "solid", colour = "black"),
@@ -169,7 +169,7 @@ makeQQplot<-function(outputDf){
                       panel.grid.minor = element_blank(),
                       panel.background = element_blank(),
                       axis.line=element_line(colour="black"),
-                      plot.title = element_text(lineheight=1.5, face="bold",size=10,hjust=0.5),
+                      plot.title = element_text(lineheight=1.5,size=12,hjust=0.5),
                       plot.subtitle = element_text(lineheight=1.5, face="bold",size=7,hjust=0.5),
                       legend.position="none")
                       #legend.position = c(0.65,0.2),
