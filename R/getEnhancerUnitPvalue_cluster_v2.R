@@ -330,7 +330,7 @@ getEnhancerUnitPvalueWithPreFilter2<-function(inputFileDir,outputFileDir,
     
     cat(sprintf("Start parsing GENE field annotations to get enhancer name\n"))
     #reducedFunseqOutputNCDS$GENEparsed<-parseFunseqNCENCField(field=reducedFunseqOutputNCDS$NCENC,keyword=elementKeyWord,useCores=1)
-    reducedFunseqOutputNCDS$GENEparsed<-parseFunseqGeneFieldenhancer(field=reducedFunseqOutputNCDS$GENE,keyword=elementKeyWord,useCores=1)
+    reducedFunseqOutputNCDS$GENEparsed<-parseFunseqGeneFieldenhancer(field=as.character(reducedFunseqOutputNCDS$GENE),keyword=elementKeyWord,useCores=1)
     
     tmpString<-strsplit(as.character(reducedFunseqOutputNCDS$NCDS),":",fixed=TRUE)
     tmpStringFrame<-data.frame(do.call("rbind",tmpString),stringsAsFactors=FALSE)
