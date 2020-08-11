@@ -310,7 +310,7 @@ getOpenChromatinElementPvalueWithPreFilter2ATAC<-function(inputFileDir,outputFil
     
     parseFunseqGeneFieldATAC<-function(field,keyword="ATAC",useCores=1){
       geneSymbol<-{}
-      a1<-strsplit(as.character(field),",")
+      a1<-strsplit(field,",")
       
       geneSymbol<-mclapply(1:length(a1), function(x){
         #cat(sprintf("gene:%s\n",i))  
@@ -330,7 +330,7 @@ getOpenChromatinElementPvalueWithPreFilter2ATAC<-function(inputFileDir,outputFil
     
     cat(sprintf("Start parsing GENE field annotations to get element name\n"))
     #reducedFunseqOutputNCDS$GENEparsed<-parseFunseqNCENCField(field=reducedFunseqOutputNCDS$NCENC,keyword=elementKeyWord,useCores=1)
-    reducedFunseqOutputNCDS$GENEparsed<-parseFunseqGeneFieldATAC(field=reducedFunseqOutputNCDS$GENE,keyword=elementKeyWord,useCores=1)
+    reducedFunseqOutputNCDS$GENEparsed<-parseFunseqGeneFieldATAC(as.character(reducedFunseqOutputNCDS$GENE),keyword=elementKeyWord,useCores=1)
     reducedFunseqOutputNCDS$name <- reducedFunseqOutputNCDS$GENEparsed
     #reducedFunseqOutputNCDS$GENEparsed<-reducedFunseqOutputNCDS$name
       
