@@ -562,7 +562,7 @@ getCDSPvalueWithPreFilter2<-function(inputFileDir,outputFileDir,
       load(fileName)
     }else{
       
-      vatDF<-arrangeVATannotation(reducedFunseqOutputCDS$VA,useCores)
+      vatDF<-arrangeVATannotation(as.character(reducedFunseqOutputCDS$VA),useCores)
       
       if( !file.exists(paste(filePath,sep="/")) ){
         dir.create(paste(filePath,sep=""),recursive=TRUE)
